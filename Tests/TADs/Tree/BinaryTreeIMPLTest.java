@@ -1,4 +1,4 @@
-package uy.edu.um.prog2.adt.TADs.Tests.Tree;
+package TADs.Tree;
 
 import org.junit.jupiter.api.Test;
 import uy.edu.um.prog2.adt.TADs.LinkedList.EmptyLinkedListException;
@@ -7,7 +7,7 @@ import uy.edu.um.prog2.adt.TADs.Tree.BinaryTreeIMPL;
 import uy.edu.um.prog2.adt.TADs.Tree.EmptyTreeException;
 import uy.edu.um.prog2.adt.TADs.Tree.MyBinaryTree;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BinaryTreeIMPLTest {
 

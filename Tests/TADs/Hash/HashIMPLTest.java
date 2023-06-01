@@ -1,4 +1,4 @@
-package uy.edu.um.prog2.adt.TADs.Tests.Hash;
+package TADs.Hash;
 
 import org.junit.jupiter.api.Test;
 import uy.edu.um.prog2.adt.TADs.Hash.EmptyHashException;

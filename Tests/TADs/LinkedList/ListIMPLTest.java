@@ -1,4 +1,4 @@
-package uy.edu.um.prog2.adt.TADs.Tests.LinkedList;
+package TADs.LinkedList;
 
 import org.junit.jupiter.api.Test;
 import uy.edu.um.prog2.adt.TADs.LinkedList.EmptyLinkedListException;
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ListIMPLTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void add() {
         MyLinkedList linkedList = new ListIMPL();
         linkedList.add(1);
@@ -25,7 +25,7 @@ class ListIMPLTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void remove() throws EmptyLinkedListException {
         MyLinkedList linkedList = new ListIMPL();
         linkedList.add(1);
@@ -37,7 +37,7 @@ class ListIMPLTest {
         assertTrue(linkedList.get(2).equals(4));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void get() throws EmptyLinkedListException {
         MyLinkedList linkedList = new ListIMPL();
         linkedList.add(1);
@@ -53,7 +53,7 @@ class ListIMPLTest {
         assertEquals(5, linkedList1.get(1));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void enqueue() {
         MyQueue queue = new ListIMPL();
         queue.enqueue(1);
@@ -61,7 +61,7 @@ class ListIMPLTest {
         assertTrue(queue.size() == 2);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void enqueueWithPriority() throws EmptyLinkedListException {
         MyPriorityQueue queue = new ListIMPL();
         queue.enqueueWithPriority(9, 3);
@@ -70,7 +70,7 @@ class ListIMPLTest {
         assertEquals(7, queue.get(0));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void dequeue() throws EmptyQueueException {
         MyQueue queue = new ListIMPL();
         queue.enqueue(1);
@@ -79,7 +79,7 @@ class ListIMPLTest {
         assertTrue(queue.size() == 1);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void existe() {
         MyQueue queue = new ListIMPL();
         queue.enqueue(1);
@@ -88,7 +88,7 @@ class ListIMPLTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     void addFirst() {
         MyLinkedList linkedList = new ListIMPL();
         linkedList.addFirst(1);
@@ -96,7 +96,7 @@ class ListIMPLTest {
         assertTrue(linkedList.size() == 2);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void pop() {
         Stack stack = new Stack();
         stack.push(1);
@@ -105,7 +105,7 @@ class ListIMPLTest {
         assertTrue(stack.size() == 1);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void top() {
         Stack stack = new Stack();
         stack.push(1);
@@ -122,7 +122,7 @@ class ListIMPLTest {
         assertTrue(stack.size() == 2);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void isEmpty() {
         MyStack<Integer> stack = new ListIMPL<>();
         assertTrue(stack.isEmpty());

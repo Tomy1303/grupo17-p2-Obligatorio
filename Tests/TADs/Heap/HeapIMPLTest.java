@@ -1,4 +1,4 @@
-package uy.edu.um.prog2.adt.TADs.Tests.Heap;
+package TADs.Heap;
 
 import org.junit.jupiter.api.Test;
 import uy.edu.um.prog2.adt.TADs.Heap.EmptyHeapException;
@@ -6,7 +6,7 @@ import uy.edu.um.prog2.adt.TADs.Heap.HeapIMPL;
 import uy.edu.um.prog2.adt.TADs.Heap.MyHeap;
 import uy.edu.um.prog2.adt.TADs.LinkedList.EmptyLinkedListException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class HeapIMPLTest {
 
