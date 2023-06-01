@@ -8,12 +8,11 @@ public class TweeterIMPL implements Tweeter{
     MyLinkedList<User> users = new ListIMPL<>();
     MyLinkedList<Hashtag> hashtags = new ListIMPL<>();
 
-    @Override
     public void agregarTweet(Tweet tweet) {
         tweets.add(tweet);
     }
 
-    @Override
+
     public void agregarUser(User user) {
         users.add(user);
     }
