@@ -5,20 +5,21 @@ import uy.edu.um.prog2.adt.TADs.LinkedList.MyLinkedList;
 
 public class Tweet {
     private long id;
-    private String contenct;
+    private String content;
     private String source;
     private Boolean isReTweet;
     private User user;
     private Fecha fecha;
     private MyLinkedList<Hashtag> hashtags = new ListIMPL<>();
 
-    public Tweet(long id, String contenct, String source, Boolean isReTweet, User user, Fecha fecha) {
+    public Tweet(long id, String content, String source, Boolean isReTweet, User user, Fecha fecha) {
         this.id = id;
-        this.contenct = contenct;
+        this.content = content;
         this.source = source;
         this.isReTweet = isReTweet;
         this.user = user;
         this.fecha = fecha;
+        this.hashtags = new ListIMPL<>();
     }
 
     public long getId() {
@@ -29,12 +30,12 @@ public class Tweet {
         this.id = id;
     }
 
-    public String getContenct() {
-        return contenct;
+    public String getContent() {
+        return content;
     }
 
-    public void setContenct(String contenct) {
-        this.contenct = contenct;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getSource() {

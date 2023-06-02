@@ -11,6 +11,7 @@ public class Hashtag {
     public Hashtag(long id, String text) {
         this.id = id;
         this.text = text;
+        this.tweets = new ListIMPL<>();
     }
 
     public long getId() {

@@ -12,6 +12,7 @@ public class User {
     public User(long id, String name) {
         this.id = id;
         this.name = name;
+        this.tweets = new ListIMPL<>();
     }
 
     public long getId() {
