@@ -6,7 +6,7 @@ import uy.edu.um.prog2.adt.TADs.LinkedList.EmptyLinkedListException;
 public interface Tweeter {
 
 
-    void obtenerTop10PilotosActivos(int mes, int año);
+    void obtenerTop10PilotosActivos(int mes, int año) throws EmptyLinkedListException;
     void obtenerTop15UsuariosTweets() throws EmptyLinkedListException, EmptyHeapException;
     int obtenerCantidadHashtagsDistinctos(Fecha dia);
     String obtenerHashtagMasUsado(Fecha dia);
