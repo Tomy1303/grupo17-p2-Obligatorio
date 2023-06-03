@@ -12,14 +12,14 @@ public class Tweet {
     private Fecha fecha;
     private MyLinkedList<Hashtag> hashtags = new ListIMPL<>();
 
-    public Tweet(long id, String content, String source, Boolean isReTweet, User user, Fecha fecha) {
+    public Tweet(long id, String content, String source, Boolean isReTweet, User user, Fecha fecha, MyLinkedList<Hashtag> hashtags) {
         this.id = id;
         this.content = content;
         this.source = source;
         this.isReTweet = isReTweet;
         this.user = user;
         this.fecha = fecha;
-        this.hashtags = new ListIMPL<>();
+        this.hashtags = hashtags;
     }
 
     public long getId() {

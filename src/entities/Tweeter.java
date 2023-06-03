@@ -8,7 +8,7 @@ public interface Tweeter {
 
     void obtenerTop10PilotosActivos(int mes, int año) throws EmptyLinkedListException;
     void obtenerTop15UsuariosTweets() throws EmptyLinkedListException, EmptyHeapException;
-    int obtenerCantidadHashtagsDistinctos(Fecha dia);
+    int obtenerCantidadHashtagsDistintos(Fecha dia) throws EmptyLinkedListException;
     String obtenerHashtagMasUsado(Fecha dia);
     void obtenerTop7CuentasFavoritos();
     int obtenerCantidadTweetsConPalabra(String palabra);

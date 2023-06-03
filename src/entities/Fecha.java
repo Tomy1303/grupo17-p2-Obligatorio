@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.Objects;
+
 public class Fecha {
     private int año;
     private int mes;
@@ -34,4 +36,12 @@ public class Fecha {
     public void setDia(int dia) {
         this.dia = dia;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Fecha fecha)) return false;
+        return año == fecha.año && mes == fecha.mes && dia == fecha.dia;
+    }
+
 }

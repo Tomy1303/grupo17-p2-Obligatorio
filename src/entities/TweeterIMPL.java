@@ -17,13 +17,12 @@ public class TweeterIMPL implements Tweeter{
 
     public void agregarTweet(Tweet tweet) throws EntidadYaExiste, EmptyLinkedListException {
         for (int i = 0; i < tweets.size(); i++) {
-                if (tweets.get(i).getId() == tweet.getId()) {
-                    throw new EntidadYaExiste();
-                } else {
-                    tweets.add(tweet);
-                }
+            if (tweets.get(i).getId() == tweet.getId()) {
+                throw new EntidadYaExiste();
             }
         }
+        tweets.add(tweet);
+    }
 
 
 
@@ -110,8 +109,20 @@ public class TweeterIMPL implements Tweeter{
 
 
     @Override
-    public int obtenerCantidadHashtagsDistinctos(Fecha dia) {
-        return 0;
+    public int obtenerCantidadHashtagsDistintos(Fecha dia) throws EmptyLinkedListException {
+        MyLinkedList<Hashtag> hashtagsDistintos = new ListIMPL<>();
+        for(int i=0; i<tweets.size(); i++){
+            if(tweets.get(i).getFecha().equals(dia)){
+                MyLinkedList<Hashtag> hashtagss = tweets.get(i).getHashtags();
+                for(int j=0; j<hashtagss.size(); j++){
+                    if(!hashtagsDistintos.existe(hashtagss.get(j))){
+                        hashtagsDistintos.add(hashtagss.get(j));
+                    }
+                }
+                return hashtagsDistintos.size();
+            }
+        }
+        return hashtagsDistintos.size();
     }
 
     @Override
