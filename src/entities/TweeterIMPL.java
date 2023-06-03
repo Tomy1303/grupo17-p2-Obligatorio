@@ -7,6 +7,7 @@ import uy.edu.um.prog2.adt.TADs.Heap.MyHeap;
 import uy.edu.um.prog2.adt.TADs.LinkedList.EmptyLinkedListException;
 import uy.edu.um.prog2.adt.TADs.LinkedList.ListIMPL;
 import uy.edu.um.prog2.adt.TADs.LinkedList.MyLinkedList;
+import uy.edu.um.prog2.adt.TADs.Queue.MyQueue;
 
 import java.util.Locale;
 
@@ -100,13 +101,15 @@ public class TweeterIMPL implements Tweeter{
     @Override
     public void obtenerTop15UsuariosTweets() throws EmptyLinkedListException, EmptyHeapException {
         MyHeap heap= new HeapIMPL(true);
-        MyLinkedList<Tweet> tweets = new ListIMPL<>();
+        MyQueue<Object> tweets = new ListIMPL<>();
+        MyLinkedList<User> users = new ListIMPL<>();
         for (int i = 0; i < users.size(); i++) {
-            heap.agregar(users.get(i).getTweets().size());  //mal
+            heap.agregar(users.get(i).getTweets());
         }
         for (int i = 0; i < 15; i++) {
-
+            tweets.enqueue(heap.obtenerYEliminar());
         }
+
     }
 
 

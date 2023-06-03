@@ -2,11 +2,11 @@ package uy.edu.um.prog2.adt.TADs.Heap;
 
 import uy.edu.um.prog2.adt.TADs.LinkedList.EmptyLinkedListException;
 
-public interface MyHeap {
+public interface MyHeap <T>{
 
-    void agregar(int valor) throws EmptyLinkedListException;
+    void agregar(T lista) throws EmptyLinkedListException;
 
-    int obtenerYEliminar() throws EmptyHeapException, EmptyLinkedListException;
+    T obtenerYEliminar() throws EmptyHeapException, EmptyLinkedListException;
 
     int size();
 
