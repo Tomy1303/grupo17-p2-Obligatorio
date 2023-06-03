@@ -7,12 +7,14 @@ import uy.edu.um.prog2.adt.TADs.LinkedList.MyLinkedList;
 public class User {
     private long id;
     private String name;
+    private boolean verificado;
     private MyLinkedList<Tweet> tweets = new ListIMPL<>();
 
-    public User(long id, String name) {
+    public User(long id, String name, boolean verificado) {
         this.id = id;
         this.name = name;
         this.tweets = new ListIMPL<>();
+        this.verificado = verificado;
     }
 
     public long getId() {
@@ -29,6 +31,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isVerificado() {
+        return verificado;
+    }
+
+    public void setVerificado(boolean verificado) {
+        this.verificado = verificado;
     }
 
     public MyLinkedList<Tweet> getTweets() {
