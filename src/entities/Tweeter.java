@@ -11,7 +11,7 @@ public interface Tweeter {
     int obtenerCantidadHashtagsDistintos(Fecha dia) throws EmptyLinkedListException;
     String obtenerHashtagMasUsado(Fecha dia);
     void obtenerTop7CuentasFavoritos();
-    int obtenerCantidadTweetsConPalabra(String palabra);
+    int obtenerCantidadTweetsConPalabra(String palabra) throws EmptyLinkedListException;
 
 
 

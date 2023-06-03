@@ -8,6 +8,8 @@ import uy.edu.um.prog2.adt.TADs.LinkedList.EmptyLinkedListException;
 import uy.edu.um.prog2.adt.TADs.LinkedList.ListIMPL;
 import uy.edu.um.prog2.adt.TADs.LinkedList.MyLinkedList;
 
+import java.util.Locale;
+
 public class TweeterIMPL implements Tweeter{
     MyLinkedList<Tweet> tweets = new ListIMPL<>();
     MyLinkedList<User> users = new ListIMPL<>();
@@ -136,7 +138,13 @@ public class TweeterIMPL implements Tweeter{
     }
 
     @Override
-    public int obtenerCantidadTweetsConPalabra(String palabra) {
-        return 0;
+    public int obtenerCantidadTweetsConPalabra(String palabra) throws EmptyLinkedListException {
+        int counter=0;
+        for (int i = 0; i < tweets.size(); i++) {
+            if(tweets.get(i).getContent().toUpperCase().contains(palabra.toUpperCase())){
+                counter++;
+            }
+        }
+        return counter;
     }
 }
