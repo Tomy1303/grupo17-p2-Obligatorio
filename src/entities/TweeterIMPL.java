@@ -7,6 +7,8 @@ import uy.edu.um.prog2.adt.TADs.Heap.MyHeap;
 import uy.edu.um.prog2.adt.TADs.LinkedList.EmptyLinkedListException;
 import uy.edu.um.prog2.adt.TADs.LinkedList.ListIMPL;
 import uy.edu.um.prog2.adt.TADs.LinkedList.MyLinkedList;
+import uy.edu.um.prog2.adt.TADs.Queue.EmptyQueueException;
+import uy.edu.um.prog2.adt.TADs.Queue.MyPriorityQueue;
 
 public class TweeterIMPL implements Tweeter{
     MyLinkedList<Tweet> tweets = new ListIMPL<>();
@@ -169,9 +171,25 @@ public class TweeterIMPL implements Tweeter{
     }
 
     @Override
-    public void obtenerTop7CuentasFavoritos() {
-
+    public MyLinkedList<Object> obtenerTop7CuentasFavoritos() throws EmptyLinkedListException, EmptyQueueException {
+        MyPriorityQueue<User> queue = new ListIMPL<>();
+        MyLinkedList<Object> lista = new ListIMPL<>();
+        for (int i = 0; i < this.users.size(); i++) {
+            User user = this.users.get(i);
+            queue.enqueueWithPriority(user, user.getFavorites());
+        }
+        int i = 0;
+        while (!queue.isEmpty() && i < 7) {
+            MyLinkedList<Object> list = new ListIMPL<>();
+            User user = queue.dequeue();
+            list.add(user.getName());
+            list.add(user.getFavorites());
+            lista.add(list);
+            i++;
+        }
+        return lista;
     }
+
 
     @Override
     public int obtenerCantidadTweetsConPalabra(String palabra) throws EmptyLinkedListException {

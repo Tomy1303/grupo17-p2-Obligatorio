@@ -12,7 +12,7 @@ public interface Tweeter {
     MyLinkedList<Object> obtenerTop15UsuariosTweets() throws EmptyLinkedListException, EmptyHeapException;
     int obtenerCantidadHashtagsDistintos(Fecha dia) throws EmptyLinkedListException;
     String obtenerHashtagMasUsado(Fecha dia);
-    void obtenerTop7CuentasFavoritos();
+    MyLinkedList<Object> obtenerTop7CuentasFavoritos() throws EmptyLinkedListException, EmptyQueueException;
     int obtenerCantidadTweetsConPalabra(String palabra) throws EmptyLinkedListException;
 
 
