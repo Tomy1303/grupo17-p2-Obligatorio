@@ -63,11 +63,11 @@ class ListIMPLTest {
 
     @Test
     void enqueueWithPriority() throws EmptyLinkedListException {
-        MyPriorityQueue queue = new ListIMPL();
+        MyPriorityQueue<Integer> queue = new ListIMPL<>();
         queue.enqueueWithPriority(9, 3);
-        queue.enqueueWithPriority(7, 7);
+        queue.enqueueWithPriority(7, -6);
         queue.enqueueWithPriority(5, 1);
-        assertEquals(7, queue.get(0));
+        assertEquals(9, queue.get(0));
     }
 
     @Test
