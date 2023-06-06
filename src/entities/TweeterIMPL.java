@@ -1,5 +1,6 @@
 package entities;
 
+import FilesReader.Reader;
 import exceptions.EntidadYaExiste;
 import uy.edu.um.prog2.adt.TADs.Heap.EmptyHeapException;
 import uy.edu.um.prog2.adt.TADs.Heap.HeapIMPL;
@@ -55,46 +56,17 @@ public class TweeterIMPL implements Tweeter{
 
     @Override
     public void obtenerTop10PilotosActivos(int mes, int año) throws EmptyLinkedListException {
-    }
-        /*
-        MyLinkedList<PilotoMencionado> pilotosMencionados = new ListIMPL<>();
-
-        // Obtener todos los tweets del mes y año proporcionados
-        for (int i = 0; i < tweets.size(); i++) {
-            Tweet tweet = tweets.get(i);
-            Fecha fechaTweet = tweet.getFecha();
-            if (fechaTweet.getMes() == mes && fechaTweet.getAño() == año) {
-                // Verificar si el tweet menciona pilotos
-                for (int j = 0; j < tweet.getHashtags().size(); j++) {
-                    Hashtag hashtag = tweet.getHashtags().get(j);
-                    if (hashtag.getText().startsWith("#piloto")) {
-                        String nombrePiloto = hashtag.getText().substring(7); // Obtener el nombre del piloto sin el hashtag
-                        // Buscar si el piloto ya está en la lista
-                        PilotoMencionado piloto = buscarPiloto(pilotosMencionados, nombrePiloto);
-                        if (piloto != null) {
-                            piloto.incrementarMenciones();
-                        } else {
-                            pilotosMencionados.add(new PilotoMencionado(nombrePiloto));
-                        }
-                    }
-                }
-            }
-        }
-
-        // Ordenar los pilotos por la cantidad de menciones de manera descendente
-        pilotosMencionados.sort(Comparator.comparingInt(PilotoMencionado::getMenciones).reversed());
-
-        // Tomar los 10 primeros pilotos de la lista ordenada
-        MyLinkedList<PilotoMencionado> top10Pilotos = pilotosMencionados.subList(0, Math.min(10, pilotosMencionados.size()));
-
-        // Imprimir el listado de los 10 pilotos más mencionados
-        System.out.println("Los 10 pilotos más mencionados en " + mes + "/" + año + " son:");
-        for (PilotoMencionado piloto : top10Pilotos) {
-            System.out.println(piloto.getNombre() + ": " + piloto.getMenciones() + " menciones");
+        MyLinkedList<String> pilotos;
+        Reader R  = new Reader();
+        pilotos = R.Drivers();
+        MyPriorityQueue<String> queue = new ListIMPL<>();
+        for(int i = 0; i < pilotos.size(); i++){
+            queue.enqueueWithPriority(pilotos.get(i),obtenerCantidadTweetsConPalabra(pilotos.get(i)));
+            System.out.println(queue.get(0));
         }
     }
 
-         */
+
 /*
     @Override
     public MyLinkedList<Object> obtenerTop15UsuariosTweets() throws EmptyLinkedListException, EmptyHeapException {
