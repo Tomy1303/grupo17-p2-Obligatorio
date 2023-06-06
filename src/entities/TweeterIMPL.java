@@ -32,10 +32,9 @@ public class TweeterIMPL implements Tweeter{
         for( int i = 0; i < users.size(); i++){
             if(users.get(i).getId() == user.getId()){
                 throw new EntidadYaExiste();
-            }else{
-                users.add(user);
             }
         }
+        users.add(user);
     }
 
     public void agregarHashtag(Hashtag hashtag) {
@@ -96,7 +95,7 @@ public class TweeterIMPL implements Tweeter{
     }
 
          */
-
+/*
     @Override
     public MyLinkedList<Object> obtenerTop15UsuariosTweets() throws EmptyLinkedListException, EmptyHeapException {
         MyHeap<MyLinkedList<Tweet>> heap= new HeapIMPL<>(true);
@@ -119,7 +118,39 @@ public class TweeterIMPL implements Tweeter{
             lista.add(list);
         }
         return lista;
+    }*/
+    @Override
+    public MyLinkedList<Object> obtenerTop15UsuariosTweets() throws EmptyLinkedListException, EmptyHeapException {
+        MyLinkedList<User> users = new ListIMPL<>();
+        MyLinkedList<Object> lista = new ListIMPL<>();
+
+        for (int i = 0; i < this.users.size(); i++) {
+            users.add(this.users.get(i));
+        }
+
+        int n = users.size();
+        for (int i = 0; i < Math.min(15, n); i++) {
+            int maxIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (users.get(j).getTweets().size() > users.get(maxIndex).getTweets().size()) {
+                    maxIndex = j;
+                }
+            }
+            //users.swap(i, maxIndex);
+        }
+
+        for (int j = 0; j < Math.min(15, n); j++) {
+            User user = users.get(j);
+            MyLinkedList<Object> userInfo = new ListIMPL<>();
+            userInfo.add(user.getName());
+            userInfo.add(user.getVerified());
+            userInfo.add(user.getTweets().size());
+            lista.add(userInfo);
+        }
+
+        return lista;
     }
+
 
     /*     @Override
     public MyLinkedList<Object> obtenerTop15UsuariosTweets() throws EmptyLinkedListException, EmptyQueueException {

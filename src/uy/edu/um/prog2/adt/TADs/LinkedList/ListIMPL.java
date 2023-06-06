@@ -288,5 +288,30 @@ public class ListIMPL<T> implements MyLinkedList<T>,MyStack <T>, MyQueue<T>, MyP
             aux2.setValue(value);
         }
     }
+    public void selectionSort() {
+        Nodo<T> current = head;
+
+        while (current != null) {
+            Nodo<T> smallest = current;
+            Nodo<T> temp = current.getSiguiente();
+
+            while (temp != null) {
+                if (temp.getValue().hashCode() < smallest.getValue().hashCode()) {
+                    smallest = temp;
+                }
+                temp = temp.getSiguiente();
+            }
+
+            swap(current, smallest);
+            current = current.getSiguiente();
+        }
+    }
+
+    @Override
+    public void swap(Nodo<T> node1, Nodo<T> node2) {
+        T temp = node1.getValue();
+        node1.setValue(node2.getValue());
+        node2.setValue(temp);
+    }
 
 }

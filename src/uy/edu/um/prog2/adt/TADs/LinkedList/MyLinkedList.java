@@ -16,4 +16,6 @@ public interface MyLinkedList<T> {
 
      void change(int pocicion1,int pocicion2) throws EmptyLinkedListException;
 
+     void swap(Nodo<T> node1, Nodo<T> node2);
+
 }
