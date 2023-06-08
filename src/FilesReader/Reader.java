@@ -1,5 +1,6 @@
 package FilesReader;
 
+import uy.edu.um.prog2.adt.TADs.LinkedList.ListIMPL;
 import uy.edu.um.prog2.adt.TADs.LinkedList.MyLinkedList;
 
 import org.apache.commons.csv.CSVFormat;
@@ -17,19 +18,19 @@ public class Reader {
         r.CSVReader();
     }
 
-    public void Drivers() {
+    public MyLinkedList Drivers() {
         String nombreArchivo = "src/FilesReader/drivers.txt";
-
+        MyLinkedList<String> drivers = new ListIMPL<>();
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
             String linea;
 
             while ((linea = br.readLine()) != null) {
-                // Procesar la línea leída
-                System.out.println(linea);
+                drivers.add(linea);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return drivers;
     }
 
     public void CSVReader(){
@@ -39,14 +40,20 @@ public class Reader {
              CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT)) {
 
             for (CSVRecord csvRecord : csvParser) {
-                String columna1 = csvRecord.get(0); // Obtener el valor de la primera columna
-                String columna2 = csvRecord.get(1); // Obtener el valor de la segunda columna
-                // Leer más columnas según sea necesario
-
-                // Procesar los valores leídos
-                System.out.println("Columna 1: " + columna1);
-                System.out.println("Columna 2: " + columna2);
-                System.out.println("-------------");
+                String id = csvRecord.get(0);
+                String name = csvRecord.get(1);
+                String localizacion = csvRecord.get(2);
+                String description = csvRecord.get(3);
+                String created = csvRecord.get(4);
+                String followers = csvRecord.get(5);
+                String friends = csvRecord.get(6);
+                String favoritos = csvRecord.get(7);
+                String verificacion = csvRecord.get(8);
+                String data = csvRecord.get(9);
+                String text = csvRecord.get(10);
+                String hashtags = csvRecord.get(11);
+                String sources = csvRecord.get(12);
+                String isRetweet = csvRecord.get(13);
             }
         } catch (IOException e) {
             e.printStackTrace();
