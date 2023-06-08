@@ -16,7 +16,6 @@ public class TweeterIMPL implements Tweeter{
     MyLinkedList<User> users = new ListIMPL<>();
     MyLinkedList<Hashtag> hashtags = new ListIMPL<>();
 
-    MyLinkedList<PilotoMencionado> pilotosMencionados = new ListIMPL<>();
 
     public void agregarTweet(Tweet tweet) throws EntidadYaExiste, EmptyLinkedListException {
         for (int i = 0; i < tweets.size(); i++) {
@@ -41,17 +40,6 @@ public class TweeterIMPL implements Tweeter{
     public void agregarHashtag(Hashtag hashtag) {
         hashtags.add(hashtag);
     }
-
-    /*
-    private PilotoMencionado buscarPiloto(MyLinkedList<PilotoMencionado> pilotos, String nombrePiloto) {
-        for (PilotoMencionado piloto : pilotos) {
-            if (piloto.getNombre().equals(nombrePiloto)) {
-                return piloto;
-            }
-        }
-        return null;
-    }
-*/
 
 
     @Override
