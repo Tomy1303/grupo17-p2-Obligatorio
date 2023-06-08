@@ -26,7 +26,6 @@ class HeapIMPLTest {
         lista.add(5);
         heap.agregar(lista);
         assertTrue(heap.size() == 3);
-
     }
 
     @Test
@@ -47,6 +46,13 @@ class HeapIMPLTest {
         lista3.add(5);
         heap.agregar(lista3);
         assertTrue(heap.obtenerYEliminar().equals(lista3));
+        MyHeap<Integer> heap2 = new HeapIMPL<>(false);
+        heap2.agregar(1);
+        heap2.agregar(2);
+        heap2.agregar(3);
+        heap2.agregar(4);
+        heap2.agregar(5);
+        assertTrue(heap2.obtenerYEliminar().equals(1));
     }
 
     @Test

@@ -22,8 +22,20 @@ public class HeapIMPL<T> implements MyHeap<T>{
         this.heap.add(lista); // Agrego el valor al final de la lista
         this.size++;
         int i = this.size - 1;
-        if (lista instanceof MyLinkedList<?>) { // Verifica si T es instancia de MyLinkedList
+        if (lista instanceof MyLinkedList<?> || lista instanceof MyStack<?> || lista instanceof MyQueue<?>) { // Verifica si T es instancia de MyLinkedList
             int listaSize = size2(lista); // Obtiene el tamaño de la lista particular utilizando size2()
+            if (max) { // max heap
+                while (i > 0 && size2(this.heap.get(i)) > size2(this.heap.get((i - 1) / 2))) {
+                    this.heap.change(i, (i - 1) / 2);
+                    i = (i - 1) / 2;
+                }
+            } else { // min heap lo mismo que max heap pero con el signo cambiado
+                while (i > 0 && size2(this.heap.get(i)) < size2(this.heap.get((i - 1) / 2))) {
+                    this.heap.change(i, (i - 1) / 2);
+                    i = (i - 1) / 2;
+                }
+            }
+        }else {
             if (max) { // max heap
                 while (i > 0 && size2(this.heap.get(i)) > size2(this.heap.get((i - 1) / 2))) {
                     this.heap.change(i, (i - 1) / 2);
@@ -51,6 +63,9 @@ public class HeapIMPL<T> implements MyHeap<T>{
         if (lista instanceof MyStack<?>){
             MyStack<?> stack = (MyStack<?>) lista;
             listaSize = stack.size();
+        }
+        if (lista instanceof Integer){
+            listaSize = (int) lista;
         }
         return listaSize;
     }
