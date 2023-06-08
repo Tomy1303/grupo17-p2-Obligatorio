@@ -15,7 +15,6 @@ public class TweeterIMPL implements Tweeter{
     MyLinkedList<Tweet> tweets;
     MyLinkedList<User> users;
 
-    MyLinkedList<PilotoMencionado> pilotosMencionados = new ListIMPL<>();
 
     public TweeterIMPL() {
         Reader R = new Reader();
@@ -46,17 +45,6 @@ public class TweeterIMPL implements Tweeter{
     public void agregarHashtag(Hashtag hashtag) {
         //hashtags.add(hashtag);
     }
-
-    /*
-    private PilotoMencionado buscarPiloto(MyLinkedList<PilotoMencionado> pilotos, String nombrePiloto) {
-        for (PilotoMencionado piloto : pilotos) {
-            if (piloto.getNombre().equals(nombrePiloto)) {
-                return piloto;
-            }
-        }
-        return null;
-    }
-*/
 
 
     @Override
