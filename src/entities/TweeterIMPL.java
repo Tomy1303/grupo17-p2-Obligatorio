@@ -16,8 +16,9 @@ public class TweeterIMPL implements Tweeter{
     MyLinkedList<User> users;
 
 
-    public TweeterIMPL() {
+    public TweeterIMPL() throws EmptyLinkedListException {
         Reader R = new Reader();
+        R.CSVReader();
         this.tweets = R.getTweets();
         this.users = R.getUsers();
     }

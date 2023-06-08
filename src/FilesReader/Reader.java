@@ -42,10 +42,6 @@ public class Reader {
         this.tweets =  new ListIMPL<>();
     }
 
-    public static void main(String[] args) throws EmptyLinkedListException {
-        Reader reader = new Reader();
-        reader.CSVReader();
-    }
 
     public MyLinkedList Drivers() {
         String nombreArchivo = "src/FilesReader/drivers.txt";
