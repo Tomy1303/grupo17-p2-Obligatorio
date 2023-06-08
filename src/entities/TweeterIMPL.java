@@ -12,11 +12,16 @@ import uy.edu.um.prog2.adt.TADs.Queue.EmptyQueueException;
 import uy.edu.um.prog2.adt.TADs.Queue.MyPriorityQueue;
 
 public class TweeterIMPL implements Tweeter{
-    MyLinkedList<Tweet> tweets = new ListIMPL<>();
-    MyLinkedList<User> users = new ListIMPL<>();
-    MyLinkedList<Hashtag> hashtags = new ListIMPL<>();
+    MyLinkedList<Tweet> tweets;
+    MyLinkedList<User> users;
 
     MyLinkedList<PilotoMencionado> pilotosMencionados = new ListIMPL<>();
+
+    public TweeterIMPL() {
+        Reader R = new Reader();
+        this.tweets = R.getTweets();
+        this.users = R.getUsers();
+    }
 
     public void agregarTweet(Tweet tweet) throws EntidadYaExiste, EmptyLinkedListException {
         for (int i = 0; i < tweets.size(); i++) {
@@ -39,7 +44,7 @@ public class TweeterIMPL implements Tweeter{
     }
 
     public void agregarHashtag(Hashtag hashtag) {
-        hashtags.add(hashtag);
+        //hashtags.add(hashtag);
     }
 
     /*
