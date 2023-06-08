@@ -104,6 +104,7 @@ public class Reader {
                         }
                         Tweet tweet = new Tweet(tweetId, content, source, isRetweet, user, fecha, hashtagsTweet);
                         tweets.add(tweet);
+                        user.setTweets(tweet);
                     } catch (Exception ignored) {
                     }
                 }else{

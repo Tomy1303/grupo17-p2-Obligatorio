@@ -112,7 +112,7 @@ public class User {
         return tweets;
     }
 
-    public void setTweets(MyLinkedList<Tweet> tweets) {
-        this.tweets = tweets;
+    public void setTweets(Tweet tweet) {
+        this.tweets.add(tweet);
     }
 }
