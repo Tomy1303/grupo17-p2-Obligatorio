@@ -62,7 +62,7 @@ public class TweeterIMP {
         assertEquals(7, tweeter.obtenerTop7CuentasFavoritos().size());
         MyLinkedList<Object> linkedList2 = new ListIMPL<>();
         linkedList2 = (MyLinkedList<Object>) tweeter.obtenerTop7CuentasFavoritos().get(0);
-        System.out.println(linkedList2.get(1));
+        assertEquals(78346, linkedList2.get(1));
 
     }
     @Test
@@ -139,5 +139,7 @@ public class TweeterIMP {
         assertEquals(15,tweeter.obtenerTop15UsuariosTweets().size());
         MyLinkedList<Object> linkedList2 = (MyLinkedList<Object>) tweeter.obtenerTop15UsuariosTweets().get(0);
         assertEquals("12",linkedList2.get(0));
+        MyLinkedList<Object> linkedList3 = (MyLinkedList<Object>) tweeter.obtenerTop15UsuariosTweets().get(1);
+        assertEquals("14", linkedList3.get(0));
     }
 }
