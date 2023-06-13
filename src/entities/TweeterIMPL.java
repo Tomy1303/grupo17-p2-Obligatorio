@@ -22,6 +22,10 @@ public class TweeterIMPL implements Tweeter{
         this.tweets = R.getTweets();
         this.users = R.getUsers();
     }
+    public TweeterIMPL(boolean test){
+        this.tweets=new ListIMPL<>();
+        this.users=new ListIMPL<>();
+    }
 
     public void agregarTweet(Tweet tweet) throws EntidadYaExiste, EmptyLinkedListException {
         for (int i = 0; i < tweets.size(); i++) {
