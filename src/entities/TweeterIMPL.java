@@ -109,9 +109,51 @@ public class TweeterIMPL implements Tweeter{
     }
 
     @Override
-    public String obtenerHashtagMasUsado(Fecha dia) {
-        return null;
-    }
+    public String obtenerHashtagMasUsado(Fecha dia) throws EmptyLinkedListException {
+            MyLinkedList<Hashtag> hashtags = new ListIMPL<>();
+            
+            for (int i = 0; i < tweets.size(); i++) {
+                Tweet tweet = tweets.get(i);
+                if (tweet.getFecha().equals(dia)) {
+                    MyLinkedList<Hashtag> tweetHashtags = tweet.getHashtags();
+                    for (int j = 0; j < tweetHashtags.size(); j++) {
+                        Hashtag hashtag = tweetHashtags.get(j);
+
+                        // Excluye el hashtag "#f1"
+                        if (!hashtag.getText().equalsIgnoreCase("#f1")) {
+                            hashtags.add(hashtag);
+                        }
+                    }
+                }
+            }
+
+            // Incrementa los contadores de los hashtags
+            for (int i = 0; i < hashtags.size(); i++) {
+                Hashtag hashtag = hashtags.get(i);
+                hashtag.incrementCounter();
+            }
+
+            // Encuentra el hashtag más usado
+            String maxHashtag = "";
+            int maxCount = 0;
+            for (int i = 0; i < hashtags.size(); i++) {
+                Hashtag hashtag = hashtags.get(i);
+                int count = hashtag.getCounter();
+                if (count > maxCount) {
+                    maxHashtag = hashtag.getText();
+                    maxCount = count;
+                }
+            }
+
+            // Reinicia los contadores de los hashtags para el siguiente día
+            for (int i = 0; i < hashtags.size(); i++) {
+                Hashtag hashtag = hashtags.get(i);
+                hashtag.resetCounter();
+            }
+
+            return maxHashtag;
+        }
+
 
     @Override
     public MyLinkedList<Object> obtenerTop7CuentasFavoritos() throws EmptyLinkedListException, EmptyQueueException {

@@ -7,6 +7,7 @@ public class Hashtag {
     private long id;
     private String text;
     MyLinkedList<Tweet> tweets = new ListIMPL<>();
+    private int counter;
 
     public Hashtag(long id, String text) {
         this.id = id;
@@ -36,5 +37,16 @@ public class Hashtag {
 
     public void setTweets(MyLinkedList<Tweet> tweets) {
         this.tweets = tweets;
+    }
+    public int getCounter() {
+        return counter;
+    }
+
+    public void incrementCounter() {
+        this.counter++;
+    }
+
+    public void resetCounter() {
+        this.counter = 0;
     }
 }
