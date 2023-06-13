@@ -154,5 +154,7 @@ public class TweeterIMP {
         assertEquals(15,tweeter.obtenerTop15UsuariosTweets().size());
         MyLinkedList<Object> linkedList2 = (MyLinkedList<Object>) tweeter.obtenerTop15UsuariosTweets().get(0);
         assertEquals("12",linkedList2.get(0));
+        MyLinkedList<Object> linkedList3 = (MyLinkedList<Object>) tweeter.obtenerTop15UsuariosTweets().get(1);
+        assertEquals("14", linkedList3.get(0));
     }
 }
