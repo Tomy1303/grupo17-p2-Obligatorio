@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TweeterIMP {
     @Test
     public void obtenerCantidadHashtagsDistinctos() throws EmptyLinkedListException, EntidadYaExiste {
-        TweeterIMPL tweeter = new TweeterIMPL(true);
+        TweeterIMPL tweeter = new TweeterIMPL();
         MyLinkedList<Hashtag> hashtags = new ListIMPL<>();
         MyLinkedList<Hashtag> hashtags2 = new ListIMPL<>();
         hashtags.add(new Hashtag(1, "Hola"));
@@ -30,7 +30,7 @@ public class TweeterIMP {
 
     @Test
     public void obtenerCantidadTweetsConPalabra() throws EntidadYaExiste, EmptyLinkedListException {
-        TweeterIMPL tweeter = new TweeterIMPL(true);
+        TweeterIMPL tweeter = new TweeterIMPL();
         Fecha fecha = new Fecha(2023, 12, 12);
         User user = new User(1, "Juan", 1000, 1000, 1000, "1000", "1000", fecha, true);
         tweeter.agregarTweet(new Tweet(1, "Hola soy fan de f1", "Twitter", false, user, new Fecha(2023, 12, 12), null));
@@ -50,7 +50,7 @@ public class TweeterIMP {
         User user6 = new User(6, "5", 1000, 100, 1000, "1000", "1000", new Fecha(2023, 12, 12), true);
         User user7 = new User(7, "4", 1000, 175, 1000, "1000", "1000", new Fecha(2023, 12, 12), true);
         User user8 = new User(8, "6", 1000, 90, 1000, "1000", "1000", new Fecha(2023, 12, 12), true);
-        TweeterIMPL tweeter = new TweeterIMPL(true);
+        TweeterIMPL tweeter = new TweeterIMPL();
         tweeter.agregarUser(user);
         tweeter.agregarUser(user2);
         tweeter.agregarUser(user3);
@@ -67,7 +67,7 @@ public class TweeterIMP {
 
     @Test
     public void obtenerHashtagMasUsado() throws EmptyLinkedListException, EntidadYaExiste {
-        TweeterIMPL tweeter = new TweeterIMPL(true);
+        TweeterIMPL tweeter = new TweeterIMPL();
         MyLinkedList<Hashtag> hashtags = new ListIMPL<>();
         MyLinkedList<Hashtag> hashtags2 = new ListIMPL<>();
         hashtags.add(new Hashtag(1, "Hola"));
@@ -116,7 +116,7 @@ public class TweeterIMP {
         Tweet tweet16 = new Tweet(16,"sdbsehbVJHB FAN","Twitter",false,user12,new Fecha(2023, 12, 12),null);
         Tweet tweet17 = new Tweet(16,"sdbsehbVJHB FAN","Twitter",false,user14,new Fecha(2023, 12, 12),null);
         Tweet tweet18 = new Tweet(16,"sdbsehbVJHB FAN","Twitter",false,user12,new Fecha(2023, 12, 12),null);
-        TweeterIMPL tweeter = new TweeterIMPL(true);
+        TweeterIMPL tweeter = new TweeterIMPL();
         user.setTweets(tweet);
         user2.setTweets(tweet2);
         user3.setTweets(tweet3);

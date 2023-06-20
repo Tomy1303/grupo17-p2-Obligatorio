@@ -12,21 +12,22 @@ import uy.edu.um.prog2.adt.TADs.Queue.EmptyQueueException;
 import uy.edu.um.prog2.adt.TADs.Queue.MyPriorityQueue;
 
 public class TweeterIMPL implements Tweeter{
-    MyLinkedList<Tweet> tweets;
-    MyLinkedList<User> users;
+    private MyLinkedList<Tweet> tweets;
+    private MyLinkedList<User> users;
+    private Reader R;
 
 
-    public TweeterIMPL() throws EmptyLinkedListException {
-        Reader R = new Reader();
+    public TweeterIMPL() {
+        this.R = new Reader();
+        this.users = new ListIMPL<>();
+        this.tweets = new ListIMPL<>();
+    }
+
+    public void CargaDeDatos() throws EmptyLinkedListException {
         R.CSVReader();
         this.tweets = R.getTweets();
         this.users = R.getUsers();
     }
-    public TweeterIMPL(boolean test){
-        this.tweets=new ListIMPL<>();
-        this.users=new ListIMPL<>();
-    }
-
     public void agregarTweet(Tweet tweet) throws EntidadYaExiste, EmptyLinkedListException {
         for (int i = 0; i < tweets.size(); i++) {
             if (tweets.get(i).getId() == tweet.getId()) {

@@ -21,6 +21,7 @@ public class main {
             System.out.println("4. Obtener Hashtag Más Usado");
             System.out.println("5. Obtener Top 7 Cuentas con más Favoritos");
             System.out.println("6. Obtener Cantidad de Tweets con una Palabra");
+            System.out.println("7. Carga de datos");
             System.out.println("0. Salir");
             System.out.print("Ingrese la opción deseada: ");
             opcion = SC.nextInt();
@@ -69,6 +70,9 @@ public class main {
                     String palabra = SC.next();
                     int cantidadTweets = Obj.obtenerCantidadTweetsConPalabra(palabra);
                     // Haz algo con cantidadTweets
+                    break;
+                case 7:
+                    Obj.CargaDeDatos();
                     break;
                 case 0:
                     loop = false;
