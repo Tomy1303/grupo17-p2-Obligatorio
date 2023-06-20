@@ -69,6 +69,7 @@ public class main {
                     System.out.print("Ingrese una palabra: ");
                     String palabra = SC.next();
                     int cantidadTweets = Obj.obtenerCantidadTweetsConPalabra(palabra);
+                    System.out.println(cantidadTweets);
                     // Haz algo con cantidadTweets
                     break;
                 case 7:
