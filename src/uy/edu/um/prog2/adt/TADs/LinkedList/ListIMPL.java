@@ -118,15 +118,21 @@ public class ListIMPL<T> implements MyLinkedList<T>,MyStack <T>, MyQueue<T>, MyP
     }
 
     @Override
-    public T get(int pocicion) throws EmptyLinkedListException {
-        if (pocicion >= 0 && pocicion < this.size) { // verifica si la pocicion es valida
-            Nodo<T> aux = this.head;                 // se crea un nodo auxiliar para recorrer la lista
-            int i = 0;
-            while(i<pocicion){
-                aux = aux.getSiguiente();
-                i++;
-            }                                       // se recorre la lista hasta llegar al elemento que se quiere obtener
-            return aux.getValue();
+    public T get(int posicion) throws EmptyLinkedListException {
+        if (posicion >= 0 && posicion < this.size) { // verifica si la pocicion es valida
+            Nodo<T> nodoActual;
+            if (posicion < this.size / 2) {
+                nodoActual = this.head;
+                for (int i = 0; i < posicion; i++) {
+                    nodoActual = nodoActual.getSiguiente();
+                }
+            } else {
+                nodoActual = this.last;
+                for (int i = this.size - 1; i > posicion; i--) {
+                    nodoActual = nodoActual.getAnterior();
+                }
+            }                                 // se recorre la lista hasta llegar al elemento que se quiere obtener
+            return nodoActual.getValue();
         }
         throw new EmptyLinkedListException();
     }
@@ -288,5 +294,4 @@ public class ListIMPL<T> implements MyLinkedList<T>,MyStack <T>, MyQueue<T>, MyP
             aux2.setValue(value);
         }
     }
-
 }

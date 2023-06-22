@@ -1,5 +1,6 @@
 package entities;
 
+import FilesReader.Reader;
 import exceptions.EntidadYaExiste;
 import uy.edu.um.prog2.adt.TADs.Heap.EmptyHeapException;
 import uy.edu.um.prog2.adt.TADs.Heap.HeapIMPL;
@@ -11,12 +12,22 @@ import uy.edu.um.prog2.adt.TADs.Queue.EmptyQueueException;
 import uy.edu.um.prog2.adt.TADs.Queue.MyPriorityQueue;
 
 public class TweeterIMPL implements Tweeter{
-    MyLinkedList<Tweet> tweets = new ListIMPL<>();
-    MyLinkedList<User> users = new ListIMPL<>();
-    MyLinkedList<Hashtag> hashtags = new ListIMPL<>();
+    private MyLinkedList<Tweet> tweets;
+    private MyLinkedList<User> users;
+    private Reader R;
 
-    MyLinkedList<PilotoMencionado> pilotosMencionados = new ListIMPL<>();
 
+    public TweeterIMPL() {
+        this.R = new Reader();
+        this.users = new ListIMPL<>();
+        this.tweets = new ListIMPL<>();
+    }
+
+    public void CargaDeDatos() throws EmptyLinkedListException {
+        R.CSVReader();
+        this.tweets = R.getTweets();
+        this.users = R.getUsers();
+    }
     public void agregarTweet(Tweet tweet) throws EntidadYaExiste, EmptyLinkedListException {
         for (int i = 0; i < tweets.size(); i++) {
             if (tweets.get(i).getId() == tweet.getId()) {
@@ -32,70 +43,29 @@ public class TweeterIMPL implements Tweeter{
         for( int i = 0; i < users.size(); i++){
             if(users.get(i).getId() == user.getId()){
                 throw new EntidadYaExiste();
-            }else{
-                users.add(user);
             }
         }
+        users.add(user);
     }
 
     public void agregarHashtag(Hashtag hashtag) {
-        hashtags.add(hashtag);
+        //hashtags.add(hashtag);
     }
-
-    /*
-    private PilotoMencionado buscarPiloto(MyLinkedList<PilotoMencionado> pilotos, String nombrePiloto) {
-        for (PilotoMencionado piloto : pilotos) {
-            if (piloto.getNombre().equals(nombrePiloto)) {
-                return piloto;
-            }
-        }
-        return null;
-    }
-*/
 
 
     @Override
     public void obtenerTop10PilotosActivos(int mes, int año) throws EmptyLinkedListException {
-    }
-        /*
-        MyLinkedList<PilotoMencionado> pilotosMencionados = new ListIMPL<>();
-
-        // Obtener todos los tweets del mes y año proporcionados
-        for (int i = 0; i < tweets.size(); i++) {
-            Tweet tweet = tweets.get(i);
-            Fecha fechaTweet = tweet.getFecha();
-            if (fechaTweet.getMes() == mes && fechaTweet.getAño() == año) {
-                // Verificar si el tweet menciona pilotos
-                for (int j = 0; j < tweet.getHashtags().size(); j++) {
-                    Hashtag hashtag = tweet.getHashtags().get(j);
-                    if (hashtag.getText().startsWith("#piloto")) {
-                        String nombrePiloto = hashtag.getText().substring(7); // Obtener el nombre del piloto sin el hashtag
-                        // Buscar si el piloto ya está en la lista
-                        PilotoMencionado piloto = buscarPiloto(pilotosMencionados, nombrePiloto);
-                        if (piloto != null) {
-                            piloto.incrementarMenciones();
-                        } else {
-                            pilotosMencionados.add(new PilotoMencionado(nombrePiloto));
-                        }
-                    }
-                }
-            }
-        }
-
-        // Ordenar los pilotos por la cantidad de menciones de manera descendente
-        pilotosMencionados.sort(Comparator.comparingInt(PilotoMencionado::getMenciones).reversed());
-
-        // Tomar los 10 primeros pilotos de la lista ordenada
-        MyLinkedList<PilotoMencionado> top10Pilotos = pilotosMencionados.subList(0, Math.min(10, pilotosMencionados.size()));
-
-        // Imprimir el listado de los 10 pilotos más mencionados
-        System.out.println("Los 10 pilotos más mencionados en " + mes + "/" + año + " son:");
-        for (PilotoMencionado piloto : top10Pilotos) {
-            System.out.println(piloto.getNombre() + ": " + piloto.getMenciones() + " menciones");
+        MyLinkedList<String> pilotos;
+        Reader R  = new Reader();
+        pilotos = R.Drivers();
+        MyPriorityQueue<String> queue = new ListIMPL<>();
+        for(int i = 0; i < pilotos.size(); i++){
+            queue.enqueueWithPriority(pilotos.get(i),obtenerCantidadTweetsConPalabra(pilotos.get(i)));
+            System.out.println(queue.get(0));
         }
     }
 
-         */
+
 
     @Override
     public MyLinkedList<Object> obtenerTop15UsuariosTweets() throws EmptyLinkedListException, EmptyHeapException {
@@ -121,32 +91,6 @@ public class TweeterIMPL implements Tweeter{
         return lista;
     }
 
-    /*     @Override
-    public MyLinkedList<Object> obtenerTop15UsuariosTweets() throws EmptyLinkedListException, EmptyQueueException {
-        MyLinkedList<User> users = new ListIMPL<>();
-        MyLinkedList<Object> lista = new ListIMPL<>();
-        MyPriorityQueue<User> queue = new ListIMPL<>();
-        for (int i = 0; i < this.users.size(); i++) {
-            User user = this.users.get(i);
-            queue.enqueueWithPriority(user, user.getTweets().size());
-        }
-        int i = 0;
-        while (!queue.isEmpty() && i < 15) {
-            User user = queue.dequeue();
-            users.add(user);
-            i++;
-        }
-        for (int j = 0; j < users.size(); j++) {
-            MyLinkedList<Object> list = new ListIMPL<>();
-            list.add(users.get(j).getName());
-            list.add(users.get(j).getVerified());
-            list.add(users.get(j).getTweets().size());
-            lista.add(list);
-        }
-        return lista;
-    }
-        */
-
 
     @Override
     public int obtenerCantidadHashtagsDistintos(Fecha dia) throws EmptyLinkedListException {
@@ -166,9 +110,51 @@ public class TweeterIMPL implements Tweeter{
     }
 
     @Override
-    public String obtenerHashtagMasUsado(Fecha dia) {
-        return null;
-    }
+    public String obtenerHashtagMasUsado(Fecha dia) throws EmptyLinkedListException {
+            MyLinkedList<Hashtag> hashtags = new ListIMPL<>();
+            
+            for (int i = 0; i < tweets.size(); i++) {
+                Tweet tweet = tweets.get(i);
+                if (tweet.getFecha().equals(dia)) {
+                    MyLinkedList<Hashtag> tweetHashtags = tweet.getHashtags();
+                    for (int j = 0; j < tweetHashtags.size(); j++) {
+                        Hashtag hashtag = tweetHashtags.get(j);
+
+                        // Excluye el hashtag "#f1"
+                        if (!hashtag.getText().equalsIgnoreCase("#f1")) {
+                            hashtags.add(hashtag);
+                        }
+                    }
+                }
+            }
+
+            // Incrementa los contadores de los hashtags
+            for (int i = 0; i < hashtags.size(); i++) {
+                Hashtag hashtag = hashtags.get(i);
+                hashtag.incrementCounter();
+            }
+
+            // Encuentra el hashtag más usado
+            String maxHashtag = "";
+            int maxCount = 0;
+            for (int i = 0; i < hashtags.size(); i++) {
+                Hashtag hashtag = hashtags.get(i);
+                int count = hashtag.getCounter();
+                if (count > maxCount) {
+                    maxHashtag = hashtag.getText();
+                    maxCount = count;
+                }
+            }
+
+            // Reinicia los contadores de los hashtags para el siguiente día
+            for (int i = 0; i < hashtags.size(); i++) {
+                Hashtag hashtag = hashtags.get(i);
+                hashtag.resetCounter();
+            }
+
+            return maxHashtag;
+        }
+
 
     @Override
     public MyLinkedList<Object> obtenerTop7CuentasFavoritos() throws EmptyLinkedListException, EmptyQueueException {

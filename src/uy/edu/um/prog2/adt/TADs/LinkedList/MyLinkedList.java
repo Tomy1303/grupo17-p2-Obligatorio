@@ -15,5 +15,4 @@ public interface MyLinkedList<T> {
      int size();
 
      void change(int pocicion1,int pocicion2) throws EmptyLinkedListException;
-
 }

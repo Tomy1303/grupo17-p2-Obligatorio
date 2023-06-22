@@ -71,12 +71,18 @@ class ListIMPLTest {
     }
 
     @Test
-    void dequeue() throws EmptyQueueException {
+    void dequeue() throws EmptyQueueException, EmptyLinkedListException {
         MyQueue queue = new ListIMPL();
         queue.enqueue(1);
         queue.enqueue(2);
         queue.dequeue();
         assertTrue(queue.size() == 1);
+        MyPriorityQueue<Integer> queue1 = new ListIMPL<>();
+        queue1.enqueueWithPriority(9, 3);
+        queue1.enqueueWithPriority(7, -6);
+        queue1.enqueueWithPriority(5, 1);
+        queue1.dequeue();
+        assertEquals(2, queue1.size());
     }
 
     @Test

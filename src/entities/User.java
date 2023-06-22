@@ -23,7 +23,7 @@ public class User {
     private Boolean verified;
     private MyLinkedList<Tweet> tweets = new ListIMPL<>();
 
-    public User(long id, String name, int followers, int favorites, int friends, String location, String description, Fecha fecha, Boolean verified) {
+    public User(long id, String name, int followers, int favorites, int friends, String location, String description, Fecha fechaCreacion, Boolean verified) {
         this.id = id;
         this.name = name;
         this.followers = followers;
@@ -31,7 +31,7 @@ public class User {
         this.friends = friends;
         this.location = location;
         this.description = description;
-        this.fecha = fecha;
+        this.fecha = fechaCreacion;
         this.verified = verified;
         this.tweets = new ListIMPL<>();
     }
@@ -112,7 +112,7 @@ public class User {
         return tweets;
     }
 
-    public void setTweets(MyLinkedList<Tweet> tweets) {
-        this.tweets = tweets;
+    public void setTweets(Tweet tweet) {
+        this.tweets.add(tweet);
     }
 }
