@@ -47,9 +47,9 @@ public class main {
                     int año2 = SC.nextInt();
                     System.out.print("Ingrese el dia: ");
                     int dia2 = SC.nextInt();
-                    LocalDateTime fecha2 = LocalDate.of(año2, mes2, dia2).atStartOfDay();
+                    LocalDate fecha2 = LocalDate.of(año2, mes2, dia2);
                     int cantidadHashtags = Obj.obtenerCantidadHashtagsDistintos(fecha2);
-                    // Haz algo con cantidadHashtags
+                    System.out.println(cantidadHashtags);
                     break;
                 case 4:
                     System.out.print("Ingrese el mes: ");

@@ -61,12 +61,10 @@ public class Reader {
              CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT)) {
             int t=0;
             for (CSVRecord csvRecord : csvParser) {
-                System.out.println(csvRecord.get(4));
                 if (t != 0) {
                     try {
                         User  user;
                         LocalDateTime fecha;
-
                         if(usuariosE.contains(csvRecord.get(1))){
                             user = usuariosE.get(csvRecord.get(1));
                             user.setFavorites((int) Double.parseDouble(csvRecord.get(7)));

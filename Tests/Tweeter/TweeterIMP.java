@@ -28,7 +28,7 @@ public class TweeterIMP {
         tweeter.agregarTweet(new Tweet(2, "Hola", "Twitter", false, user, fecha, hashtags));
         tweeter.agregarTweet(new Tweet(3, "Hola", "Twitter", false, user, fecha, hashtags2));
         tweeter.agregarTweet(new Tweet(4, "Hola", "Twitter", false, user, fecha, hashtags));
-        assertEquals(2, tweeter.obtenerCantidadHashtagsDistintos(fecha));
+        assertEquals(2, tweeter.obtenerCantidadHashtagsDistintos(fecha.toLocalDate()));
     }
 
     @Test
