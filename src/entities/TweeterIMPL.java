@@ -12,6 +12,7 @@ import uy.edu.um.prog2.adt.TADs.LinkedList.ListIMPL;
 import uy.edu.um.prog2.adt.TADs.LinkedList.MyLinkedList;
 import uy.edu.um.prog2.adt.TADs.Queue.EmptyQueueException;
 import uy.edu.um.prog2.adt.TADs.Queue.MyPriorityQueue;
+import uy.edu.um.prog2.adt.TADs.Queue.MyQueue;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -72,27 +73,21 @@ public class TweeterIMPL implements Tweeter{
 
 
     @Override
-    public MyLinkedList<Object> obtenerTop15UsuariosTweets() throws EmptyLinkedListException, EmptyHeapException {
+    public MyQueue<User> obtenerTop15UsuariosTweets() throws EmptyLinkedListException, EmptyHeapException {
         MyHeap<MyLinkedList<Tweet>> heap= new HeapIMPL<>(true);
-        MyLinkedList<User> users = new ListIMPL<>();
-        MyLinkedList<Object> lista = new ListIMPL<>();
+        MyQueue<User> users = new ListIMPL<>();
         for (int i = 0; i < this.users.size(); i++) {
             heap.agregar(this.users.get(i).getTweets());
         }
         int i = 0;
-        while (i < 15){
+        while (i < 15 && heap.size() > 0){
             MyLinkedList<Tweet> list = heap.obtenerYEliminar();
-            users.add(list.get(0).getUser());
-            i++;
+            if (list.size() > 0){
+                users.enqueue(list.get(0).getUser());
+                i++;
+            }
         }
-        for (int j = 0; j < users.size(); j++) {
-            MyLinkedList<Object> list = new ListIMPL<>();
-            list.add(users.get(j).getName());
-            list.add(users.get(j).getVerified());
-            list.add(users.get(j).getTweets().size());
-            lista.add(list);
-        }
-        return lista;
+        return users;
     }
 
 
@@ -158,9 +153,9 @@ public class TweeterIMPL implements Tweeter{
 
 
     @Override
-    public MyLinkedList<Object> obtenerTop7CuentasFavoritos() throws EmptyLinkedListException, EmptyQueueException {
+    public MyQueue<User> obtenerTop7CuentasFavoritos() throws EmptyLinkedListException, EmptyQueueException {
         MyPriorityQueue<User> queue = new ListIMPL<>();
-        MyLinkedList<Object> lista = new ListIMPL<>();
+        MyQueue<User> lista = new ListIMPL<>();
         for (int i = 0; i < this.users.size(); i++) {
             User user = this.users.get(i);
             queue.enqueueWithPriority(user, user.getFavorites());
@@ -169,9 +164,7 @@ public class TweeterIMPL implements Tweeter{
         while (!queue.isEmpty() && i < 7) {
             MyLinkedList<Object> list = new ListIMPL<>();
             User user = queue.dequeue();
-            list.add(user.getName());
-            list.add(user.getFavorites());
-            lista.add(list);
+            lista.enqueue(user);
             i++;
         }
         return lista;

@@ -139,16 +139,15 @@ public class ListIMPL<T> implements MyLinkedList<T>,MyStack <T>, MyQueue<T>, MyP
 
     @Override
     public void enqueue(T value) {
-        if (value != null) {                         // si el elemento es vacio se ignora
-            Nodo<T> elementToAdd = new Nodo<>(value);// se crea un nodo con el valor a agregar
-            if (this.head == null) {                 // si la lista es vacia se agrega al comienzo
+        if (value != null) {
+            Nodo<T> elementToAdd = new Nodo<>(value);
+            if (this.head == null) {
                 this.head = elementToAdd;
                 this.last = elementToAdd;
-            } else {                                 // en caso de no ser vacia se agrega al final
-                this.head.setAnterior(elementToAdd);
-                Nodo<T> aux = this.head;
-                this.head = elementToAdd;
-                this.head.setSiguiente(aux);   // se actualiza el primer elemento
+            } else {
+                elementToAdd.setAnterior(this.last);
+                this.last.setSiguiente(elementToAdd);
+                this.last = elementToAdd;
             }
             this.size++;
         }

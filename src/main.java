@@ -1,10 +1,14 @@
 import entities.TweeterIMPL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import entities.User;
 import uy.edu.um.prog2.adt.TADs.LinkedList.EmptyLinkedListException;
 import uy.edu.um.prog2.adt.TADs.LinkedList.MyLinkedList;
 import uy.edu.um.prog2.adt.TADs.Heap.EmptyHeapException;
 import uy.edu.um.prog2.adt.TADs.Queue.EmptyQueueException;
+import uy.edu.um.prog2.adt.TADs.Queue.MyQueue;
+
 import java.util.Scanner;
 
 public class main {
@@ -36,9 +40,11 @@ public class main {
                     Obj.obtenerTop10PilotosActivos(mes, año);
                     break;
                 case 2:
-                    MyLinkedList<Object> top15UsuariosTweets = Obj.obtenerTop15UsuariosTweets();
-                    // Haz algo con top15UsuariosTweets
-                    System.out.println(top15UsuariosTweets.size());
+                    MyQueue<User> top15UsuariosTweets = Obj.obtenerTop15UsuariosTweets();
+                    while (top15UsuariosTweets.size() > 0){
+                        User usuario = top15UsuariosTweets.dequeue();
+                        System.out.println(usuario.getName() + " " + usuario.getTweets().size() + " " + usuario.getVerified());
+                    }
                     break;
                 case 3:
                     System.out.print("Ingrese el mes: ");
@@ -63,7 +69,11 @@ public class main {
                     // Haz algo con hashtagMasUsado
                     break;
                 case 5:
-                    MyLinkedList<Object> top7CuentasFavoritos = Obj.obtenerTop7CuentasFavoritos();
+                    MyQueue<User> top7CuentasFavoritos = Obj.obtenerTop7CuentasFavoritos();
+                    while (top7CuentasFavoritos.size() > 0){
+                        User usuario = top7CuentasFavoritos.dequeue();
+                        System.out.println(usuario.getName() + " " + usuario.getFavorites() + " " );
+                    }
                     // Haz algo con top7CuentasFavoritos
                     break;
                 case 6:
