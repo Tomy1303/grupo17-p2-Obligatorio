@@ -1,5 +1,8 @@
 package entities;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import uy.edu.um.prog2.adt.TADs.LinkedList.ListIMPL;
 import uy.edu.um.prog2.adt.TADs.LinkedList.MyLinkedList;
@@ -18,12 +21,12 @@ public class User {
 
     private String description;
 
-    private Fecha fecha;
+    private LocalDateTime fecha;
 
     private Boolean verified;
     private MyLinkedList<Tweet> tweets = new ListIMPL<>();
 
-    public User(long id, String name, int followers, int favorites, int friends, String location, String description, Fecha fechaCreacion, Boolean verified) {
+    public User(long id, String name, int followers, int favorites, int friends, String location, String description, LocalDateTime fechaCreacion, Boolean verified) {
         this.id = id;
         this.name = name;
         this.followers = followers;
@@ -76,11 +79,11 @@ public class User {
         this.description = description;
     }
 
-    public Fecha getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(Fecha fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 

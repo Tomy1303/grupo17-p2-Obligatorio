@@ -1,5 +1,8 @@
 package entities;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import uy.edu.um.prog2.adt.TADs.LinkedList.ListIMPL;
 import uy.edu.um.prog2.adt.TADs.LinkedList.MyLinkedList;
 
@@ -9,10 +12,10 @@ public class Tweet {
     private String source;
     private Boolean isReTweet;
     private User user;
-    private Fecha fecha;
+    private LocalDateTime fecha;
     private MyLinkedList<Hashtag> hashtags = new ListIMPL<>();
 
-    public Tweet(long id, String content, String source, Boolean isReTweet, User user, Fecha fecha, MyLinkedList<Hashtag> hashtags) {
+    public Tweet(long id, String content, String source, Boolean isReTweet, User user, LocalDateTime fecha, MyLinkedList<Hashtag> hashtags) {
         this.id = id;
         this.content = content;
         this.source = source;
@@ -62,11 +65,11 @@ public class Tweet {
         this.user = user;
     }
 
-    public Fecha getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(Fecha fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 

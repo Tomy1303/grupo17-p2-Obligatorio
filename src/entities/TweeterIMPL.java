@@ -2,6 +2,8 @@ package entities;
 
 import FilesReader.Reader;
 import exceptions.EntidadYaExiste;
+import uy.edu.um.prog2.adt.TADs.Hash.HashIMPL;
+import uy.edu.um.prog2.adt.TADs.Hash.MyHash;
 import uy.edu.um.prog2.adt.TADs.Heap.EmptyHeapException;
 import uy.edu.um.prog2.adt.TADs.Heap.HeapIMPL;
 import uy.edu.um.prog2.adt.TADs.Heap.MyHeap;
@@ -10,6 +12,9 @@ import uy.edu.um.prog2.adt.TADs.LinkedList.ListIMPL;
 import uy.edu.um.prog2.adt.TADs.LinkedList.MyLinkedList;
 import uy.edu.um.prog2.adt.TADs.Queue.EmptyQueueException;
 import uy.edu.um.prog2.adt.TADs.Queue.MyPriorityQueue;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class TweeterIMPL implements Tweeter{
     private MyLinkedList<Tweet> tweets;
@@ -56,7 +61,6 @@ public class TweeterIMPL implements Tweeter{
     @Override
     public void obtenerTop10PilotosActivos(int mes, int año) throws EmptyLinkedListException {
         MyLinkedList<String> pilotos;
-        Reader R  = new Reader();
         pilotos = R.Drivers();
         MyPriorityQueue<String> queue = new ListIMPL<>();
         for(int i = 0; i < pilotos.size(); i++){
@@ -93,29 +97,26 @@ public class TweeterIMPL implements Tweeter{
 
 
     @Override
-    public int obtenerCantidadHashtagsDistintos(Fecha dia) throws EmptyLinkedListException {
-        MyLinkedList<Hashtag> hashtagsDistintos = new ListIMPL<>();
+    public int obtenerCantidadHashtagsDistintos(LocalDate dia) throws EmptyLinkedListException {
+        MyHash<String, Boolean> hashtagsDistintos = new HashIMPL<>(1000);
         for(int i=0; i<tweets.size(); i++){
-            if(tweets.get(i).getFecha().equals(dia)){
-                MyLinkedList<Hashtag> hashtagss = tweets.get(i).getHashtags();
-                for(int j=0; j<hashtagss.size(); j++){
-                    if(!hashtagsDistintos.existe(hashtagss.get(j))){
-                        hashtagsDistintos.add(hashtagss.get(j));
-                    }
+            if(tweets.get(i).getFecha().toLocalDate().equals(dia)){
+                MyLinkedList<Hashtag> hashtags = tweets.get(i).getHashtags();
+                for(int j=0; j<hashtags.size(); j++){
+                    hashtagsDistintos.put(hashtags.get(j).getText(), true);
                 }
-                return hashtagsDistintos.size();
             }
         }
         return hashtagsDistintos.size();
     }
 
     @Override
-    public String obtenerHashtagMasUsado(Fecha dia) throws EmptyLinkedListException {
+    public String obtenerHashtagMasUsado(LocalDateTime dia) throws EmptyLinkedListException {
             MyLinkedList<Hashtag> hashtags = new ListIMPL<>();
             
             for (int i = 0; i < tweets.size(); i++) {
                 Tweet tweet = tweets.get(i);
-                if (tweet.getFecha().equals(dia)) {
+                if (tweet.getFecha().isEqual(dia)) {
                     MyLinkedList<Hashtag> tweetHashtags = tweet.getHashtags();
                     for (int j = 0; j < tweetHashtags.size(); j++) {
                         Hashtag hashtag = tweetHashtags.get(j);

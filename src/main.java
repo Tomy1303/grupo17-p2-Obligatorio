@@ -1,5 +1,6 @@
-import entities.Fecha;
 import entities.TweeterIMPL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import uy.edu.um.prog2.adt.TADs.LinkedList.EmptyLinkedListException;
 import uy.edu.um.prog2.adt.TADs.LinkedList.MyLinkedList;
 import uy.edu.um.prog2.adt.TADs.Heap.EmptyHeapException;
@@ -46,9 +47,9 @@ public class main {
                     int año2 = SC.nextInt();
                     System.out.print("Ingrese el dia: ");
                     int dia2 = SC.nextInt();
-                    Fecha f=new Fecha(año2,mes2,dia2);
-                    int cantidadHashtags = Obj.obtenerCantidadHashtagsDistintos(f);
-                    // Haz algo con cantidadHashtags
+                    LocalDate fecha2 = LocalDate.of(año2, mes2, dia2);
+                    int cantidadHashtags = Obj.obtenerCantidadHashtagsDistintos(fecha2);
+                    System.out.println(cantidadHashtags);
                     break;
                 case 4:
                     System.out.print("Ingrese el mes: ");
@@ -57,8 +58,8 @@ public class main {
                     int año3 = SC.nextInt();
                     System.out.print("Ingrese el dia: ");
                     int dia3 = SC.nextInt();
-                    Fecha f2=new Fecha(año3,mes3,dia3);
-                    String hashtagMasUsado = Obj.obtenerHashtagMasUsado(f2);
+                    LocalDateTime fecha3 = LocalDate.of(año3, mes3, dia3).atStartOfDay();
+                    String hashtagMasUsado = Obj.obtenerHashtagMasUsado(fecha3);
                     // Haz algo con hashtagMasUsado
                     break;
                 case 5:
