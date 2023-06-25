@@ -211,7 +211,7 @@ public class TweeterIMPL implements Tweeter{
     public int obtenerCantidadTweetsConPalabra(String palabra) throws EmptyLinkedListException {
         int counter=0;
         for (int i = 0; i < tweets.size(); i++) {
-            if(tweets.get(i).getContent().toUpperCase().contains(palabra.toUpperCase())){
+            if(tweets.get(i).getContent().contains(palabra)){
                 counter++;
             }
         }

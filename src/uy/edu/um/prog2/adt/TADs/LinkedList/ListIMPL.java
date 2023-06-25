@@ -12,10 +12,16 @@ public class ListIMPL<T> implements MyLinkedList<T>,MyStack <T>, MyQueue<T>, MyP
     private Nodo<T> last;
     private int size;
 
+    private Nodo<T> punteroGet;
+
+    private int getCounter;
+
     public ListIMPL() {
         this.head = null;
         this.last = null;
+        this.punteroGet = null;
         this.size = 0;
+        this.getCounter = 0;
     }
 
     @Override
@@ -120,6 +126,16 @@ public class ListIMPL<T> implements MyLinkedList<T>,MyStack <T>, MyQueue<T>, MyP
     @Override
     public T get(int posicion) throws EmptyLinkedListException {
         if (posicion >= 0 && posicion < this.size) { // verifica si la pocicion es valida
+            if(posicion==(this.getCounter+1)){
+                try {
+                    this.getCounter++;
+                    this.punteroGet = this.punteroGet.getSiguiente();
+                    return this.punteroGet.getValue();
+                } catch (NullPointerException e) {
+                    this.punteroGet = this.head;
+                    return this.head.getValue();
+                }
+            }
             Nodo<T> nodoActual;
             if (posicion < this.size / 2) {
                 nodoActual = this.head;
@@ -131,11 +147,14 @@ public class ListIMPL<T> implements MyLinkedList<T>,MyStack <T>, MyQueue<T>, MyP
                 for (int i = this.size - 1; i > posicion; i--) {
                     nodoActual = nodoActual.getAnterior();
                 }
-            }                                 // se recorre la lista hasta llegar al elemento que se quiere obtener
+            }
+            this.getCounter = posicion;
+            this.punteroGet = nodoActual;
             return nodoActual.getValue();
         }
         throw new EmptyLinkedListException();
     }
+
 
     @Override
     public void enqueue(T value) {
