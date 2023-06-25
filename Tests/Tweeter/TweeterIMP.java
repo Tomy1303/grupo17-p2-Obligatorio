@@ -8,6 +8,8 @@ import uy.edu.um.prog2.adt.TADs.LinkedList.EmptyLinkedListException;
 import uy.edu.um.prog2.adt.TADs.LinkedList.ListIMPL;
 import uy.edu.um.prog2.adt.TADs.LinkedList.MyLinkedList;
 import uy.edu.um.prog2.adt.TADs.Queue.EmptyQueueException;
+import uy.edu.um.prog2.adt.TADs.Queue.MyPriorityQueue;
+import uy.edu.um.prog2.adt.TADs.Tree.EmptyTreeException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,6 +17,30 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TweeterIMP {
+    @Test
+    public void obtenerTop10PilotosActivos() throws EmptyLinkedListException, EmptyTreeException, EmptyQueueException, EntidadYaExiste {
+        TweeterIMPL tweeter = new TweeterIMPL();
+        LocalDateTime fecha = LocalDate.of(2023, 12, 12).atStartOfDay();
+        User user = new User(1, "Juan", 1000, 1000, 1000, "1000", "1000", fecha, true);
+        User user2 = new User(2, "Juan", 1000, 1000, 1000, "1000", "1000", fecha, true);
+        User user3 = new User(3, "Juan", 1000, 1000, 1000, "1000", "1000", fecha, true);
+        Tweet tweet = new Tweet(1, "Fernando Alonso", "Twitter", false, user, fecha, null);
+        Tweet tweet2 = new Tweet(2, "Lewis Hamilton", "Twitter", false, user2, fecha, null);
+        Tweet tweet3 = new Tweet(3, "Max Verstappen", "Twitter", false, user3, fecha, null);
+        Tweet tweet4 = new Tweet(4, "Fernando Alonso", "Twitter", false, user, fecha, null);
+        Tweet tweet5 = new Tweet(5, "Carlos Sainz", "Twitter", false, user2, fecha, null);
+        Tweet tweet6 = new Tweet(6, "Lewis Hamilton", "Twitter", false, user3, fecha, null);
+        Tweet tweet7 = new Tweet(7, "Lewis Hamilton", "Twitter", false, user, fecha, null);
+        tweeter.agregarTweet(tweet);
+        tweeter.agregarTweet(tweet2);
+        tweeter.agregarTweet(tweet3);
+        tweeter.agregarTweet(tweet4);
+        tweeter.agregarTweet(tweet5);
+        tweeter.agregarTweet(tweet6);
+        tweeter.agregarTweet(tweet7);
+        tweeter.obtenerTop10PilotosActivos(12, 2023);
+
+    }
     @Test
     public void obtenerCantidadHashtagsDistinctos() throws EmptyLinkedListException, EntidadYaExiste {
         TweeterIMPL tweeter = new TweeterIMPL();

@@ -4,6 +4,7 @@ import uy.edu.um.prog2.adt.TADs.Heap.EmptyHeapException;
 import uy.edu.um.prog2.adt.TADs.LinkedList.EmptyLinkedListException;
 import uy.edu.um.prog2.adt.TADs.LinkedList.MyLinkedList;
 import uy.edu.um.prog2.adt.TADs.Queue.EmptyQueueException;
+import uy.edu.um.prog2.adt.TADs.Queue.MyPriorityQueue;
 import uy.edu.um.prog2.adt.TADs.Queue.MyQueue;
 import uy.edu.um.prog2.adt.TADs.Tree.EmptyTreeException;
 
