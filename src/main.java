@@ -8,11 +8,12 @@ import uy.edu.um.prog2.adt.TADs.LinkedList.MyLinkedList;
 import uy.edu.um.prog2.adt.TADs.Heap.EmptyHeapException;
 import uy.edu.um.prog2.adt.TADs.Queue.EmptyQueueException;
 import uy.edu.um.prog2.adt.TADs.Queue.MyQueue;
+import uy.edu.um.prog2.adt.TADs.Tree.EmptyTreeException;
 
 import java.util.Scanner;
 
 public class main {
-    public static void main(String[] args) throws EmptyLinkedListException, EmptyHeapException, EmptyQueueException {
+    public static void main(String[] args) throws EmptyLinkedListException, EmptyHeapException, EmptyQueueException, EmptyTreeException {
         TweeterIMPL Obj = new TweeterIMPL();
         boolean loop = true;
         Scanner SC = new Scanner(System.in);

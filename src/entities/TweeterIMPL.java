@@ -10,9 +10,13 @@ import uy.edu.um.prog2.adt.TADs.Heap.MyHeap;
 import uy.edu.um.prog2.adt.TADs.LinkedList.EmptyLinkedListException;
 import uy.edu.um.prog2.adt.TADs.LinkedList.ListIMPL;
 import uy.edu.um.prog2.adt.TADs.LinkedList.MyLinkedList;
+import uy.edu.um.prog2.adt.TADs.LinkedList.MySimpleLinkedList;
 import uy.edu.um.prog2.adt.TADs.Queue.EmptyQueueException;
 import uy.edu.um.prog2.adt.TADs.Queue.MyPriorityQueue;
 import uy.edu.um.prog2.adt.TADs.Queue.MyQueue;
+import uy.edu.um.prog2.adt.TADs.Tree.BinaryTreeIMPL;
+import uy.edu.um.prog2.adt.TADs.Tree.EmptyTreeException;
+import uy.edu.um.prog2.adt.TADs.Tree.MyBinaryTree;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -60,15 +64,47 @@ public class TweeterIMPL implements Tweeter{
 
 
     @Override
-    public void obtenerTop10PilotosActivos(int mes, int año) throws EmptyLinkedListException {
+    public void obtenerTop10PilotosActivos(int mes, int año) throws EmptyLinkedListException, EmptyTreeException, EmptyQueueException {
+        LocalDateTime fechamax;
+        if (mes == 12){
+             fechamax = LocalDateTime.of(año +1, 1 , 1, 0, 0);
+
+        } else{
+            fechamax = LocalDateTime.of(año, mes +1 , 1, 0, 0);
+        }
+        LocalDateTime fechamin = LocalDateTime.of(año, mes, 1, 0, 0);
+
         MyLinkedList<String> pilotos;
         pilotos = R.Drivers();
-        MyPriorityQueue<String> queue = new ListIMPL<>();
-        for(int i = 0; i < pilotos.size(); i++){
-            queue.enqueueWithPriority(pilotos.get(i),obtenerCantidadTweetsConPalabra(pilotos.get(i)));
-            System.out.println(queue.get(0));
+        MyBinaryTree<String, Integer> arbol = new BinaryTreeIMPL<>();
+        for( int i = 0 ; 1< this.tweets.size(); i++){
+            Tweet tweet = this.tweets.get(i);
+            if (tweet.getFecha().isAfter(fechamin) && tweet.getFecha().isBefore(fechamax)){
+                for (int j = 0; j < pilotos.size(); j++) {
+                    if (tweet.getContent().contains(pilotos.get(j))){
+                        Integer piloto = arbol.find(pilotos.get(j));
+                        if (piloto != null){
+                            arbol.insert(pilotos.get(j), piloto + 1);
+                        } else {
+                            arbol.insert(pilotos.get(j), 1);
+                        }
+                    }
+                }
+            }
+        }MyPriorityQueue <String> ordenados  = new ListIMPL<>();
+        for (int i = 0; pilotos.size() > 0; i++) {
+            String piloto = pilotos.get(i);
+            int cantidad = arbol.find(piloto);
+            if (cantidad > 0){
+                ordenados.enqueueWithPriority(piloto, cantidad);
+            }
         }
-    }
+        for (int i = 0; i < 10; i++) {
+            System.out.println(ordenados.dequeue());
+
+
+        }}
+
 
 
 
