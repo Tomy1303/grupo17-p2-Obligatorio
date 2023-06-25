@@ -77,7 +77,7 @@ public class TweeterIMPL implements Tweeter{
         MyLinkedList<String> pilotos;
         pilotos = R.Drivers();
         MyBinaryTree<String, Integer> arbol = new BinaryTreeIMPL<>();
-        for( int i = 0 ; 1< this.tweets.size(); i++){
+        for( int i = 0 ; i< this.tweets.size(); i++){
             Tweet tweet = this.tweets.get(i);
             if (tweet.getFecha().isAfter(fechamin) && tweet.getFecha().isBefore(fechamax)){
                 for (int j = 0; j < pilotos.size(); j++) {
@@ -92,18 +92,17 @@ public class TweeterIMPL implements Tweeter{
                 }
             }
         }MyPriorityQueue <String> ordenados  = new ListIMPL<>();
-        for (int i = 0; pilotos.size() > 0; i++) {
+        for (int i = 0; i<pilotos.size(); i++) {
             String piloto = pilotos.get(i);
-            int cantidad = arbol.find(piloto);
-            if (cantidad > 0){
+            Integer cantidad = arbol.find(piloto);
+            if (cantidad != null){
                 ordenados.enqueueWithPriority(piloto, cantidad);
             }
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < ordenados.size(); i++) {
             System.out.println(ordenados.dequeue());
-
-
-        }}
+        }
+    }
 
 
 

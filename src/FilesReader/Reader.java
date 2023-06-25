@@ -90,9 +90,9 @@ public class Reader {
                             String source = csvRecord.get(12);
                             boolean isRetweet = Boolean.parseBoolean(csvRecord.get(13));
                             fecha = LocalDateTime.parse(Fecha_Hora, formatter);
+                            MyLinkedList<Hashtag> hashtagsTweet = new ListIMPL<>();
                             String hashtagsString = csvRecord.get(11).replaceAll("[\\[\\]\"]", "");
                             String[] hashtagsArray = hashtagsString.split(",");
-                            MyLinkedList<Hashtag> hashtagsTweet = new ListIMPL<>();
                             for (String s : hashtagsArray) {
                                 s=s.toLowerCase();
                                 if(hashtags.contains(s)){
