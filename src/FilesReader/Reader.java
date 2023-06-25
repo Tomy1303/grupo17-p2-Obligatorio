@@ -55,6 +55,7 @@ public class Reader {
     }
 
     public void CSVReader() throws EmptyLinkedListException {
+        //String archivoCSV = "src/FilesReader/f1_dataset.csv";
         String archivoCSV = "src/FilesReader/f1_dataset_test.csv";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         try (FileReader reader = new FileReader(archivoCSV);
