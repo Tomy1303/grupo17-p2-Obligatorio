@@ -20,6 +20,7 @@ import uy.edu.um.prog2.adt.TADs.Tree.MyBinaryTree;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class TweeterIMPL implements Tweeter{
     private MyLinkedList<Tweet> tweets;
@@ -99,8 +100,10 @@ public class TweeterIMPL implements Tweeter{
                 ordenados.enqueueWithPriority(piloto, cantidad);
             }
         }
-        for (int i = 0; i < ordenados.size(); i++) {
-            System.out.println(ordenados.dequeue());
+        for (int i = 1; i < ordenados.size()+1; i++) {
+            if(i<11) {
+                System.out.println(i + "- " + ordenados.dequeue());
+            }
         }
     }
 
@@ -141,18 +144,18 @@ public class TweeterIMPL implements Tweeter{
     }
 
     @Override
-    public String obtenerHashtagMasUsado(LocalDateTime dia) throws EmptyLinkedListException {
+    public String obtenerHashtagMasUsado(LocalDate dia) throws EmptyLinkedListException {
             MyLinkedList<Hashtag> hashtags = new ListIMPL<>();
             
             for (int i = 0; i < tweets.size(); i++) {
                 Tweet tweet = tweets.get(i);
-                if (tweet.getFecha().isEqual(dia)) {
+                if (tweet.getFecha().toLocalDate().equals(dia)) {
                     MyLinkedList<Hashtag> tweetHashtags = tweet.getHashtags();
                     for (int j = 0; j < tweetHashtags.size(); j++) {
                         Hashtag hashtag = tweetHashtags.get(j);
-
-                        // Excluye el hashtag "#f1"
-                        if (!hashtag.getText().equalsIgnoreCase("#f1")) {
+                        String text = hashtag.getText();
+                        // Excluye el hashtag "f1"
+                        if (!text.equalsIgnoreCase("'f1'")) {
                             hashtags.add(hashtag);
                         }
                     }
