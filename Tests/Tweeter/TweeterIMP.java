@@ -24,7 +24,7 @@ public class TweeterIMP {
         User user = new User(1, "Juan", 1000, 1000, 1000, "1000", "1000", fecha, true);
         User user2 = new User(2, "Juan", 1000, 1000, 1000, "1000", "1000", fecha, true);
         User user3 = new User(3, "Juan", 1000, 1000, 1000, "1000", "1000", fecha, true);
-        Tweet tweet = new Tweet(1, "Fernando Alonso", "Twitter", false, user, fecha, null);
+        Tweet tweet = new Tweet(1, "Carlos Sainz", "Twitter", false, user, fecha, null);
         Tweet tweet2 = new Tweet(2, "Lewis Hamilton", "Twitter", false, user2, fecha, null);
         Tweet tweet3 = new Tweet(3, "Max Verstappen", "Twitter", false, user3, fecha, null);
         Tweet tweet4 = new Tweet(4, "Fernando Alonso", "Twitter", false, user, fecha, null);
@@ -108,7 +108,7 @@ public class TweeterIMP {
         tweeter.agregarTweet(new Tweet(2, "Hola", "Twitter", false, user, fecha, hashtags));
         tweeter.agregarTweet(new Tweet(3, "Hola", "Twitter", false, user, fecha, hashtags2));
         tweeter.agregarTweet(new Tweet(4, "Hola", "Twitter", false, user, fecha, hashtags));
-        assertEquals("Hola", tweeter.obtenerHashtagMasUsado(fecha));
+        assertEquals("Hola", tweeter.obtenerHashtagMasUsado(fecha.toLocalDate()));
     }
     @Test
     public void obtenerTop15UsuariosTweets() throws EntidadYaExiste, EmptyLinkedListException, EmptyQueueException, EmptyHeapException {

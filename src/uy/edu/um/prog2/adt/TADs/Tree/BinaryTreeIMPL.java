@@ -35,24 +35,23 @@ public class BinaryTreeIMPL<K extends Comparable<K>, T> implements MyBinaryTree<
         insert(key, data, this.root);                                    //llamamos a la funcion recursiva
     }
     public void insert(K key,T data,BinaryNodoTree<K, T> nodo){         //funcion recursiva
-        if (nodo != null) {                                             //si el nodo no es nulo
-        switch (key.compareTo(nodo.getKey())) {                         //compara la key con la key del nodo
-            case -1 -> {
+        if (nodo != null) {//si el nodo no es nulo
+            int compare = key.compareTo(nodo.getKey());                       //compara la key con la key del nodo
+            if(compare < 0){
                 if (nodo.getLeftChild() == null) {                      //si la key es menor a la del nodo, insertamos en el hijo izquierdo
                     nodo.setLeftChild(new BinaryNodoTree<>(key, data)); //si el hijo izquierdo es nulo, insertamos el nodo
                 } else {
                     insert(key, data, nodo.getLeftChild());             //si el hijo izquierdo no es nulo, llamamos a la funcion recursiva con el hijo izquierdo
                 }
-            }
-            case 1 -> {                                                 //si la key es mayor a la del nodo, insertamos en el hijo derecho
+            }else if(compare > 0){                 //si la key es mayor a la del nodo, insertamos en el hijo derecho
                 if (nodo.getRightChild() == null) {                     //si el hijo derecho es nulo, insertamos el nodo
                     nodo.setRightChild(new BinaryNodoTree<>(key, data));//si el hijo derecho no es nulo, llamamos a la funcion recursiva con el hijo derecho
                 } else {
                     insert(key, data, nodo.getRightChild());            //si el hijo derecho no es nulo, llamamos a la funcion recursiva con el hijo derecho
                 }
-            }
-            case 0 -> nodo.setData(data);                               //si la key es igual a la del nodo, cambiamos la data del nodo
-        }
+            }else{
+                nodo.setData(data);
+            }                              //si la key es igual a la del nodo, cambiamos la data del nodo
         } else {
             this.root = new BinaryNodoTree<>(key, data);                //si el nodo es nulo, insertamos el nodo
         }
@@ -103,7 +102,6 @@ public class BinaryTreeIMPL<K extends Comparable<K>, T> implements MyBinaryTree<
 
     @Override
     public int size() {
-        System.out.println("El tamaño del arbol es: "+inOrder().size());
         return inOrder().size();                                                     //retorna el tamaño del arbol
     }
 

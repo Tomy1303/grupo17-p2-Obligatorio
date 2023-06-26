@@ -78,31 +78,39 @@ public class TweeterIMPL implements Tweeter{
         MyLinkedList<String> pilotos;
         pilotos = R.Drivers();
         MyBinaryTree<String, Integer> arbol = new BinaryTreeIMPL<>();
+        Tweet tweet;
+        String piloto;
+        Integer pilotoMenciones;
         for( int i = 0 ; i< this.tweets.size(); i++){
-            Tweet tweet = this.tweets.get(i);
+            tweet = this.tweets.get(i);
             if (tweet.getFecha().isAfter(fechamin) && tweet.getFecha().isBefore(fechamax)){
                 for (int j = 0; j < pilotos.size(); j++) {
-                    if (tweet.getContent().contains(pilotos.get(j))){
-                        Integer piloto = arbol.find(pilotos.get(j));
-                        if (piloto != null){
-                            arbol.insert(pilotos.get(j), piloto + 1);
+                    piloto = pilotos.get(j);
+                    if (tweet.getContent().contains(piloto)){
+                        pilotoMenciones = arbol.find(piloto);
+                        if (pilotoMenciones != null){
+                            arbol.insert(piloto, pilotoMenciones + 1);
                         } else {
-                            arbol.insert(pilotos.get(j), 1);
+                            arbol.insert(piloto, 1);
                         }
                     }
                 }
             }
-        }MyPriorityQueue <String> ordenados  = new ListIMPL<>();
+        }
+        MyPriorityQueue <String> ordenados  = new ListIMPL<>();
+        Integer cantidad;
         for (int i = 0; i<pilotos.size(); i++) {
-            String piloto = pilotos.get(i);
-            Integer cantidad = arbol.find(piloto);
+            piloto = pilotos.get(i);
+            cantidad = arbol.find(piloto);
             if (cantidad != null){
                 ordenados.enqueueWithPriority(piloto, cantidad);
             }
         }
-        for (int i = 1; i < ordenados.size()+1; i++) {
-            if(i<11) {
-                System.out.println(i + "- " + ordenados.dequeue());
+        int contador = 1;
+        while (ordenados.size() > 0) {
+            if (contador < 11) {
+                System.out.println(contador + "- " + ordenados.dequeue());
+                contador++;
             }
         }
     }
