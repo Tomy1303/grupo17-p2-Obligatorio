@@ -39,6 +39,5 @@
 4. En tweeter impl las listas de tweets y users son listas enlazadas, ya que las recorremos constantemente y ademas, en el get linkedlist, agregamos un puntero que apunta al ultimo valor obtendo. Este servira para que cuando se recorra una lista de manera completa y continua se pueda acceder al siguiente valor con orden 1.
 
 
-
 ## Consumo de memoria
 
