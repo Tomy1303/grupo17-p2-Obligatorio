@@ -199,23 +199,30 @@ public class TweeterIMPL implements Tweeter{
 
 
     @Override
-    public MyQueue<User> obtenerTop7CuentasFavoritos() throws EmptyLinkedListException, EmptyQueueException {
-        MyPriorityQueue<User> queue = new ListIMPL<>();
-        MyQueue<User> lista = new ListIMPL<>();
+    public MyQueue<User> obtenerTop7CuentasFavoritos() throws EmptyLinkedListException, EmptyQueueException, EmptyHeapException {
+        MyHeap<Integer> heap = new HeapIMPL<>(true);
+        MyQueue<Integer> favoritos = new ListIMPL<>();
+        MyQueue<User> usuarios = new ListIMPL<>();
         for (int i = 0; i < this.users.size(); i++) {
             User user = this.users.get(i);
-            queue.enqueueWithPriority(user, user.getFavorites());
+            heap.agregar(user.getFavorites());
         }
         int i = 0;
-        while (!queue.isEmpty() && i < 7) {
-            MyLinkedList<Object> list = new ListIMPL<>();
-            User user = queue.dequeue();
-            lista.enqueue(user);
+        while (heap.size() > 0 && i < 7) {
+            favoritos.enqueue(heap.obtenerYEliminar());
             i++;
         }
-        return lista;
+        while (favoritos.size() > 0) {
+            int fav = favoritos.dequeue();
+            for (int j = 0; j < this.users.size(); j++) {
+                User user = this.users.get(j);
+                if (user.getFavorites() == fav) {
+                    usuarios.enqueue(user);
+                }
+            }
+        }
+        return usuarios;
     }
-
 
     @Override
     public int obtenerCantidadTweetsConPalabra(String palabra) throws EmptyLinkedListException {

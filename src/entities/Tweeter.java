@@ -18,7 +18,7 @@ public interface Tweeter {
     MyQueue<User> obtenerTop15UsuariosTweets() throws EmptyLinkedListException, EmptyHeapException;
     int obtenerCantidadHashtagsDistintos(LocalDate dia) throws EmptyLinkedListException;
     String obtenerHashtagMasUsado(LocalDate dia) throws EmptyLinkedListException;
-    MyQueue<User> obtenerTop7CuentasFavoritos() throws EmptyLinkedListException, EmptyQueueException;
+    MyQueue<User> obtenerTop7CuentasFavoritos() throws EmptyLinkedListException, EmptyQueueException, EmptyHeapException;
     int obtenerCantidadTweetsConPalabra(String palabra) throws EmptyLinkedListException;
 
 
