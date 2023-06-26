@@ -70,7 +70,7 @@ public class TweeterIMP {
     }
 
     @Test
-    public void obtenerTop7CuentasFavoritos() throws EntidadYaExiste, EmptyLinkedListException, EmptyQueueException {
+    public void obtenerTop7CuentasFavoritos() throws EntidadYaExiste, EmptyLinkedListException, EmptyQueueException, EmptyHeapException {
         LocalDateTime fecha = LocalDate.of(2023, 12, 12).atStartOfDay();
         User user = new User(1, "3", 1000, 1000, 1000, "1000", "1000",fecha, true);
         User user2 = new User(2, "1", 1000, 78346, 1000, "1000", "1000", fecha, true);
