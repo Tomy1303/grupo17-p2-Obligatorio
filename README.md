@@ -30,6 +30,11 @@
 
 ### 1. Carga de datos de usuarios
 
+1. Para la carga de datos se instalo el paquete de apache commons csv.
+2. En caso de que alguna linea contuviera un error, se captura la excepcion y se continua con la carga de datos.
+3. Los valores null no generaran problemas
+4. Se utilizo un hash para verificar si hay datos repetidos y si hay no se almacenan.
+
 ## Decisiones tomadas
 
 1. Decidimos usar LocalDateTime para las fechas.
@@ -39,5 +44,7 @@
 4. En tweeter impl las listas de tweets y users son listas enlazadas, ya que las recorremos constantemente y ademas, en el get linkedlist, agregamos un puntero que apunta al ultimo valor obtendo. Este servira para que cuando se recorra una lista de manera completa y continua se pueda acceder al siguiente valor con orden 1.
 
 
-## Consumo de memoria
+## Importante
+
+### El archivo csv debe de colocarse "src/FilesReader/f1_dataset.csv" con esta ruta en caso contrario dara error.
 
