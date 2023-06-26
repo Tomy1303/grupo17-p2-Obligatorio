@@ -111,6 +111,8 @@ public class TweeterIMPL implements Tweeter{
             if (contador < 11) {
                 System.out.println(contador + "- " + ordenados.dequeue());
                 contador++;
+            }else{
+                break;
             }
         }
     }
